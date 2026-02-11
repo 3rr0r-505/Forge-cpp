@@ -1,6 +1,5 @@
 # ByteHawk
-![Language](https://img.shields.io/badge/Language-C%2B%2B-blue?logo=c%2B%2B)
-![Standard](https://img.shields.io/badge/C%2B%2B-11%2B-blueviolet?logo=c%2B%2B)
+![Language](https://img.shields.io/badge/Language-C%2B%2B-blue?logo=c%2B%2B) ![Standard](https://img.shields.io/badge/C%2B%2B-11%2B-blueviolet?logo=c%2B%2B)
 ![OS](https://img.shields.io/badge/OS-Linux-black?logo=linux)
 ![Data Source](https://img.shields.io/badge/Data-%2Fproc-critical?logo=linux)
 ![Build](https://img.shields.io/badge/build-g%2B%2B-success?logo=gnu)
