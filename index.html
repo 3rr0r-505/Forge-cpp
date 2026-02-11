@@ -98,7 +98,8 @@
     margin-bottom: 10px;
   }
   #md-content p { color: #cbd5f5; margin-bottom: 12px; white-space: pre-wrap; }
-  #md-content img[src*="shields.io"] { display: inline-block; white-space: normal; margin-right: 6px; vertical-align: middle; }
+  #md-content p:has(img[src*="shields.io"]) { white-space: nowrap; }   /* Force shields badges to stay inline */
+  #md-content img[src*="shields.io"] { display: inline-block; vertical-align: middle; margin-right: 6px; }
   #md-content ul, #md-content ol { padding-left: 20px; margin-bottom: 12px; }
   #md-content li { margin: 4px 0; }
   #md-content table { width:100%; border-collapse: collapse; margin-bottom: 18px; }
