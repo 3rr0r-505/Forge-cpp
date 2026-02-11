@@ -102,7 +102,7 @@ ByteHawk/
 - Stores data using structs/classes
 - Refreshes output in a loop to simulate live monitoring
 
-# 🧠 Inspiration
+## 🧠 Inspiration
 
 - `top`
 - `htop`
