@@ -105,7 +105,7 @@ ByteHawk/
 
 This project is licensed under **Apache License** for educational purposes. Free to use, modify, and learn from.
 
-## 🥋🧩 ASCII art
+## 🧩 ASCII art
 ```
  /$$              /$$$$$$$              /$$               /$$   /$$                         /$$      
 |  $$            | $$__  $$            | $$              | $$  | $$                        | $$      
