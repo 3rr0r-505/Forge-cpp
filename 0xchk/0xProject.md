@@ -1,148 +1,113 @@
-# ⚙️ HexHound — C++ MALWARE ANALYSIS SIMULATOR
+# ByteHawk
+![Language](https://img.shields.io/badge/Language-C%2B%2B-blue?logo=c%2B%2B)
+![Standard](https://img.shields.io/badge/C%2B%2B-11%2B-blueviolet?logo=c%2B%2B)
+![OS](https://img.shields.io/badge/OS-Linux-black?logo=linux)
+![Data Source](https://img.shields.io/badge/Data-%2Fproc-critical?logo=linux)
+![Build](https://img.shields.io/badge/build-g%2B%2B-success?logo=gnu)
+![Interface](https://img.shields.io/badge/Interface-Terminal-darkgreen?logo=gnubash)
+![Kernel](https://img.shields.io/badge/Kernel-Linux%20Userspace-yellow?logo=linux)
+![Monitoring](https://img.shields.io/badge/Type-System%20Monitor-red?logo=htop)
 
-## ⁉️ Project Title  
+**ByteHawk** is a lightweight, terminal-based Linux system monitor written in **C++**, inspired by `top` and `htop` but intentionally kept simple for learning. It reads live system and process data from the **`/proc` filesystem** and displays it in the terminal, focusing on core C++ fundamentals rather than full feature parity.
 
-### Basic Malware Behavior Analysis & Logging System
+## 🎯 Project Goals
 
-## 🎯 Objective  
+- Learn core **C++ basics** through a real Linux system project
+- Understand how Linux exposes system data via `/proc`
+- Practice file I/O, strings, loops, structs/classes, and STL
+- Build a live-updating terminal application
 
-Build a **console-based C++ program** that simulates how a malware analysis tool:
-- collects behavior data
-- evaluates severity
-- handles malformed inputs
-- stores results
-- logs execution safely
+## 🛠 Tech Stack
 
-This project integrates **all major C++ concepts learned from W3Schools** without going into advanced exploitation or OS internals.
+- **Language:** C++
+- **Platform:** Linux
+- **Data Source:** `/proc` filesystem
+- **Build Tool:** g++ / make (simple compilation)
+- **Optional:** Python (only for offline log analysis)
 
-## 📜 Project Description  
+## 📦 Requirements
 
-You are building a **basic malware analysis simulator**.
+- Linux system (any distro)
+- g++ compiler (C++11 or later)
+- Basic terminal knowledge
+- No root access required ❌
 
-The program accepts multiple malware behavior records, analyzes them, assigns risk levels, stores them using STL containers, and logs results to a file with timestamps.
+## ✨ Features (Planned & Implemented)
 
-The system must be **robust**, **well-structured**, and **safe against invalid input** — just like real malware analysis tools.
+| System Info                     | Process Info                     | UI                          |
+|---------------------------------|----------------------------------|-----------------------------|
+| Total & available memory        | List running processes           | Live terminal refresh       |
+| CPU usage                       | PID & process name               | Simple text-based layout    |
+| System uptime                   | Memory usage per process         | No ncurses (initially)      |
+|                                 | Basic CPU usage per process      |                             |
 
-## 🧩 Core Features & Concept Mapping  
+## 🚫 Out of Scope (Intentionally)
 
-### 🔹 C++ Basics
-- Variables, data types, operators
-- User input & output
-- Strings, math, booleans
-- If-else, switch
-- Loops (for / while)
-- Break & continue
+To keep the project beginner-friendly, the following are **not included**:
+- Killing processes
+- Process tree view
+- Kernel modules or hooks
+- Root-only features
+- Advanced TUI libraries (ncurses)
 
-### 🔹 Arrays, Structs, Enums
-- Array / vector to store behaviors
-- `struct` for MalwareRecord
-- `enum` for RiskLevel
+## 📂 Project Structure
 
-### 🔹 References & Pointers
-- Pass records using references
-- Use pointers for dynamic memory storage
+```text
+ByteHawk/
+├── src/
+│   ├── main.cpp
+│   ├── proc_reader.cpp
+│   ├── proc_reader.h
+│   └── ui.cpp
+├── include/
+├── logs/
+├── README.md
+└── Makefile
+```
 
-### 🔹 Memory Management
-- Allocate malware records dynamically
-- Free memory safely
+## 📁 Project Structure Explanation
 
-### 🔹 Functions
-- Modular analysis functions
-- Function overloading (log output)
-- Recursion (optional severity scan)
-- Lambda for filtering high-risk malware
+- **`src/`**  
+  Contains all the C++ source code for ByteHawk.
 
-### 🔹 OOP (Classes)
-- Base class: `MalwareComponent`
-- Derived classes:
-  - `Keylogger`
-  - `NetworkBeacon`
-  - `PersistenceMechanism`
-- Constructors & encapsulation
-- Polymorphism via base-class pointers
-- Templates for logging
-- File handling
-- Date & time tracking
+  - **`main.cpp`**  
+    Entry point of the program.  
+    Handles program flow, refresh loop, and calls other modules.
 
-### 🔹 Errors & Validation
-- Input validation
-- Exception handling
-- Safe error recovery (no crash)
+  - **`proc_reader.cpp`**  
+    Implements logic to read and parse system and process data from `/proc`.
 
-### 🔹 STL & Algorithms
-- `vector` → execution trace
-- `set` → unique components
-- `map` → component → severity
-- `stack` → simulated call stack
-- `queue` → scheduled tasks
-- Algorithms: `max_element`, `find`, `count`
+  - **`proc_reader.h`**  
+    Declares structs/classes and function prototypes used to read `/proc`.
 
-### 🔹 Namespaces
-- `Analysis`
-- `Logger`
-- `Utils`
+  - **`ui.cpp`**  
+    Handles terminal output and formatting of displayed data.
 
-## 📐 Rules & Logic  
+- **`include/`**  
+  Reserved for future header files if the project grows.
 
-### Malware Severity Rules
+- **`logs/`**  
+    Stores optional logs or snapshots of system data for analysis or debugging.
 
-| Component | Base Severity |
-|---------|---------------|
-| Keylogger | 4 |
-| NetworkBeacon | 3 |
-| PersistenceMechanism | 5 |
+- **`README.md`**  
+  Project documentation, goals, and usage instructions.
 
-### Risk Classification
-- Severity ≥ 6 → `DANGEROUS`
-- Severity 3–5 → `MODERATE`
-- Severity ≤ 2 → `LOW`
+- **`Makefile`**  
+  Simplifies building the project using `make`.
 
-### Validation Rules
-- Invalid component name → reject
-- Severity < 0 → invalid
-- Severity > 10 → suspicious overflow
-- Program must continue after errors
+## 🚀 How It Works (High Level)
 
-## 🚦 Program Output  
+- Reads system and process data from `/proc`
+- Parses text files using standard C++ I/O
+- Stores data using structs/classes
+- Refreshes output in a loop to simulate live monitoring
 
-For each malware record:
-- Component name
-- Severity
-- Risk level
-- Timestamp
-- Logged to file
+# 🧠 Inspiration
 
-Also display:
-- Execution order
-- Unique components detected
-- Highest-risk component
+- `top`
+- `htop`
+- Linux `/proc` documentation
 
-## 🧪 Test Cases  
+## 📄 License
 
-| Test Case | Category | Input |
-|----------|----------|-------|
-| 1 | Normal | `n=2; Keylogger 4, NetworkBeacon 3` |
-| 2 | Normal | `n=3; NetworkBeacon 3, PersistenceMechanism 5, Keylogger 4` |
-| 3 | Normal | `n=1; PersistenceMechanism 5` |
-| 4 | Edge | `n=0` |
-| 5 | Edge | `n=1; Keylogger 6` |
-| 6 | Edge | `n=1; NetworkBeacon -1` |
-| 7 | Edge | `n=2; Keylogger 2, PersistenceMechanism 7` |
-| 8 | Edge | `n=3; Keylogger 10, NetworkBeacon 10, PersistenceMechanism 10` |
-
-## 📊 Expected Outcomes Summary  
-
-| Test Case | Expected Outcome |
-|----------|------------------|
-| 1 | MODERATE highest risk |
-| 2 | DANGEROUS highest risk |
-| 3 | DANGEROUS |
-| 4 | No data handled safely |
-| 5 | DANGEROUS |
-| 6 | Invalid input handled |
-| 7 | DANGEROUS |
-| 8 | All high-risk components |
-
-## 📁 Output File Example  
-[2026-02-09 16:20:10] Keylogger 4 MODERATE
-[2026-02-09 16:20:10] NetworkBeacon 3 MODERATE
+This project is licensed under **Apache License** for educational purposes. Free to use, modify, and learn from.
