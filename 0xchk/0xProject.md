@@ -70,47 +70,47 @@ This project is licensed under **Apache License** for educational purposes. Free
 ## 📂 Project Structure
 
 ```text
-hawkpro/
+/hawkpro
 ├── CMakeLists.txt
 ├── README.md
-├── include/
+├── /include
 │   ├── config.hpp        // constants (refresh=500ms, colors, limits)
 │   ├── types.hpp         // structs (ProcessInfo, CpuSnapshot, etc.)
-│   ├── system/
+│   ├── /system
 │   │   ├── cpu.hpp
 │   │   ├── memory.hpp
 │   │   ├── disk.hpp
 │   │   ├── network.hpp
 │   │   ├── uptime.hpp
 │   │   └── os.hpp
-│   ├── process/
+│   ├── /process
 │   │   ├── process.hpp
 │   │   └── proc_reader.hpp
-│   └── ui/
+│   └── /ui
 │       ├── screen.hpp    // ncurses init / shutdown
 │       ├── layout.hpp    // sec1 / sec2 geometry
 │       ├── header.hpp    // OS | HawkPro | Uptime
 │       ├── table.hpp     // process table + sorting
 │       └── input.hpp     // mouse + key handling
-├── src/
+├── /src
 │   ├── main.cpp          // main loop (500ms tick)
-│   ├── system/
+│   ├── /system
 │   │   ├── cpu.cpp
 │   │   ├── memory.cpp
 │   │   ├── disk.cpp
 │   │   ├── network.cpp
 │   │   ├── uptime.cpp
 │   │   └── os.cpp
-│   ├── process/
+│   ├── /process
 │   │   ├── process.cpp
 │   │   └── proc_reader.cpp
-│   └── ui/
+│   └── /ui
 │       ├── screen.cpp
 │       ├── layout.cpp
 │       ├── header.cpp
 │       ├── table.cpp
 │       └── input.cpp
-└── build/
+└── /build
 ```
 
 ## 🧩 UI Design
