@@ -43,51 +43,6 @@ To keep the project beginner-friendly, the following are **not included**:
 - Root-only features
 - Advanced TUI libraries (ncurses)
 
-## 📂 Project Structure
-
-```text
-ByteHawk/
-├── src/
-│   ├── main.cpp
-│   ├── proc_reader.cpp
-│   ├── proc_reader.h
-│   └── ui.cpp
-├── include/
-├── logs/
-├── README.md
-└── Makefile
-```
-
-## 📁 Project Structure Explanation
-
-- **`src/`**  
-  Contains all the C++ source code for ByteHawk.
-
-  - **`main.cpp`**  
-    Entry point of the program.  
-    Handles program flow, refresh loop, and calls other modules.
-
-  - **`proc_reader.cpp`**  
-    Implements logic to read and parse system and process data from `/proc`.
-
-  - **`proc_reader.h`**  
-    Declares structs/classes and function prototypes used to read `/proc`.
-
-  - **`ui.cpp`**  
-    Handles terminal output and formatting of displayed data.
-
-- **`include/`**  
-  Reserved for future header files if the project grows.
-
-- **`logs/`**  
-    Stores optional logs or snapshots of system data for analysis or debugging.
-
-- **`README.md`**  
-  Project documentation, goals, and usage instructions.
-
-- **`Makefile`**  
-  Simplifies building the project using `make`.
-
 ## 🚀 How It Works (High Level)
 
 - Reads system and process data from `/proc`
@@ -105,6 +60,52 @@ ByteHawk/
 
 This project is licensed under **Apache License** for educational purposes. Free to use, modify, and learn from.
 
+## 📂 Project Structure
+
+```text
+hawkpro/
+├── CMakeLists.txt
+├── README.md
+├── include/
+│   ├── config.hpp        // constants (refresh=500ms, colors, limits)
+│   ├── types.hpp         // structs (ProcessInfo, CpuSnapshot, etc.)
+│   ├── system/
+│   │   ├── cpu.hpp
+│   │   ├── memory.hpp
+│   │   ├── disk.hpp
+│   │   ├── network.hpp
+│   │   ├── uptime.hpp
+│   │   └── os.hpp
+│   ├── process/
+│   │   ├── process.hpp
+│   │   └── proc_reader.hpp
+│   └── ui/
+│       ├── screen.hpp    // ncurses init / shutdown
+│       ├── layout.hpp    // sec1 / sec2 geometry
+│       ├── header.hpp    // OS | HawkPro | Uptime
+│       ├── table.hpp     // process table + sorting
+│       └── input.hpp     // mouse + key handling
+├── src/
+│   ├── main.cpp          // main loop (500ms tick)
+│   ├── system/
+│   │   ├── cpu.cpp
+│   │   ├── memory.cpp
+│   │   ├── disk.cpp
+│   │   ├── network.cpp
+│   │   ├── uptime.cpp
+│   │   └── os.cpp
+│   ├── process/
+│   │   ├── process.cpp
+│   │   └── proc_reader.cpp
+│   └── ui/
+│       ├── screen.cpp
+│       ├── layout.cpp
+│       ├── header.cpp
+│       ├── table.cpp
+│       └── input.cpp
+└── build/
+```
+
 ## 🧩 UI Design
 ``` 
 +-----------------------------------------------------------------------------------------------+
@@ -120,5 +121,6 @@ This project is licensed under **Apache License** for educational purposes. Free
 | 5678     user            2.5          1.0          R       00:12     vim                      |
 | ...      ...             ...          ...          ...      ...      ...                      |
 +-----------------------------------------------------------------------------------------------+
+
 ```
 
